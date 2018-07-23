@@ -1,0 +1,66 @@
+---
+layout: default
+---
+
+
+<div class="jumbotron" id="title">
+  <div class="container">
+    <h1 class="display-3">darkthecross workshop</h1>
+    <p>Welcome to the personal website of <a href="/about/">Mingxiang Fan</a>, a man who enjoys his life exploring the possibility of the future, and believes that sufficently developed technology is indistinguishable from magic.</p>
+  </div>
+</div>
+
+<div class="container">
+
+<!--
+
+  {%- if site.pages -%}
+  <ul>
+      {%- for ps in site.pages -%}
+      <li>
+          <a href = "{{ ps.url | relative_url }}"> {{ps.title}} </a>
+      </li>
+      {%- endfor -%}
+  </ul>
+  {%- endif -%}
+
+-->
+
+<div class="album py-5">
+  <div class="container">
+
+<div class="row">
+
+  {%- if site.posts.size > 0 -%}
+
+      {%- for post in site.posts -%}
+
+<div class="col-md-4">
+      <div class="card mb-4 shadow-lg">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+
+
+        {%- if post.title_img -%}
+<a href=" {{ post.permalink }} ">
+        <img class="card-img-top" src=" {{ post.title_img }} " alt="Card image cap">
+</a>
+        {%- endif -%}
+
+        <div class="card-body">
+<a href=" {{ post.permalink }} ">
+            <h5 class="card-title"> {{ post.title }} </h5>
+        </a>
+            <p class="card-text"> {{ post.description }} </p>
+
+        </div>
+    </div>
+</div>
+      {%- endfor -%}
+
+  {%- endif -%}
+</div>
+
+</div>
+</div>
+
+</div>
