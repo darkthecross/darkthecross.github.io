@@ -2,8 +2,9 @@
 #layout: post
 layout: post
 title:  ff
+title-image: title_bg.png
 date:   2018-06-22 23:52:31 -0700
-categories: jekyll update
+category: Robotics
 description: A simple demonstration of something new
 permalink: /testpost_1.html
 ---

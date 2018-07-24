@@ -5,23 +5,25 @@
       <h4>darkthecross workshop</h4>
       <small class="d-block mb-3 text-muted">&copy; 2018</small>
     </div>
-    <div class="col-12 col-md">
+    <div class="col-6 col-md">
       <h5>Contacts</h5>
       <ul  class="list-unstyled text-small">
           <li class="text-muted">
-              {%- if site.author -%} {{ site.author | escape }} {%- else -%} {{ site.title | escape }} {%- endif -%}
+              {%- if site.author -%} <a class="text-muted" href="/about/"> {{ site.author | escape }} {%- else -%} {{ site.title | escape }} </a> {%- endif -%}
           </li>
           {%- if site.email -%}
-          <li class="text-muted"> <i class="fas fa-envelope"></i> <a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          <li class="text-muted"> <i class="fas fa-envelope"></i> <a class="u-email text-muted" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
           {%- endif -%} {%- if site.github_username -%}
-          <li class="text-muted"> <i class="fab fa-github"></i> <a href="https://github.com/{{ site.github_username| cgi_escape | escape }}" target="_blank"><span class="username">{{ site.github_username| escape }}</span></a></li>
+          <li class="text-muted"> <i class="fab fa-github"></i> <a class="text-muted" href="https://github.com/{{ site.github_username| cgi_escape | escape }}" target="_blank"><span class="username">{{ site.github_username| escape }}</span></a></li>
           {%- endif -%}
       </ul>
     </div>
-    <div class="col-12 col-md">
-      <h5>Friends</h5>
+    <div class="col-18 col-md">
+      <h5>Links</h5>
       <ul class="list-unstyled text-small">
-        <li><a class="text-muted" href="#">Siseventeen</a></li>
+        <li>The beloved one: <a class="text-muted" target="_blank" href="#">Siseventeen</a></li>
+        <li>This site was made with: <a class="text-muted" target="_blank" href="http://jekyllrb.com"><i class="fas fa-vial"></i>Jekyll</a></li>
+        <li>Hosted with ❤ by : <a class="text-muted" target="_blank" href="http://github.com"> <i class="fab fa-github-square"></i> Github</a></li>
       </ul>
     </div>
   </div>

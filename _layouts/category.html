@@ -4,32 +4,24 @@ layout: default
 
 {%- assign ti = site.static_files | where: "name", page.title-image -%}
 {%- if ti.size > 0 -%}
-<div class="jumbotron" style="background-image: url({{ ti[0].path }})">
+<div class="jumbotron category-jumbotron" style="background-image: url({{ ti[0].path }})">
     {%- else -%}
     <div class="jumbotron">
-        {%- endif -%}
+    {%- endif -%}
     <div class="container">
-        <h1 class="display-5">darkthecross workshop</h1>
-        <p>Sufficently developed technology is indistinguishable from magic.</p>
+        <h1 class="display-5"> {{ page.title | escape }} </h1>
+        <p> {{ page.content }} </p>
     </div>
 </div>
+
 <div class="container">
     <div class="album">
         <div class="container">
-
-            {%- assign cposts = site.posts | group_by:"category" -%}
-
-            {%- for cates in cposts -%}
-
-            {%- assign cate_page = site.pages | where: "name", cates.name -%}
-
-            <h3> <a class="text-dark" href="cate_page.url"> {{cates.name}} </a> </h3>
-            <hr />
             <div class="row">
-                {%- for post in cates.items -%}
+                {%- assign categorized_posts = site.posts | where: "category", page.title -%}
+                {%- if categorized_posts.size > 0 -%} {%- for post in categorized_posts -%}
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-lg">
-                        <!-- {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%} -->
                         {%- if post.title-image -%} {%- assign title_img_file = site.static_files | where: "name", post.title-image -%} {%- if title_img_file.size>0 -%}
                         <a href=" {{ post.permalink }} ">
         <img class="card-img-top" src=" {{ title_img_file[0].path }} " alt="Card image cap">
@@ -42,11 +34,9 @@ layout: default
                         </div>
                     </div>
                 </div>
-                {%- endfor -%}
+                {%- endfor -%} {%- endif -%}
             </div>
-
-            {%- endfor -%}
-
         </div>
     </div>
+
 </div>

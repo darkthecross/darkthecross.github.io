@@ -16,12 +16,12 @@
 title: The darkthecross workshop
 email: fanmx@umich.edu
 description: >- # this means to ignore newlines until "baseurl:"
-  This is the personal website of Mingxiang Fan (AKA darkthecross), demonstrating lots of interesting projects and talented ideas.
+  This is the personal website of Mingxiang Fan (AKA darkthecross).
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "darkthecross.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 github_username:  darkthecross
-
+author: Mingxiang Fan
 # Build settings
 markdown: kramdown
 theme:
