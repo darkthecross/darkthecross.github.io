@@ -1,18 +1,16 @@
 ---
-layout: page
+layout: about
 title: about
 permalink: /about/
+
+author-name: Mingxiang Fan
+author-image: mf.jpg
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Always curious about new technologies, and interested in reality-related interactions, including robotics, robot perception, intelligent devices etc.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+~~Was once very athletic. Good at cooking. Play Dota2.~~
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+Studied at Tsinghua University (2011-2015) and the University of Michigan (2016-2018).
 
-
-[jekyll-organization]: https://github.com/jekyll
+Worked at Mechmind Robotics as a Robot Algorithm Engieer, and is now working for Google as a Software Engineer on the Google Apps team. Not open to new positions, but would be glad to make new connections.

@@ -24,3 +24,11 @@ body {
     width: 36px;
     height: 36px;
 }
+
+#author-img {
+    width: auto;
+}
+
+.logo-img {
+    max-height: 30px;
+}

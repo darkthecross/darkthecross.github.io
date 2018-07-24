@@ -4,13 +4,14 @@ layout: default
 
 {%- assign ti = site.static_files | where: "name", page.title-image -%}
 {%- if ti.size > 0 -%}
-<div class="jumbotron" style="background-image: url({{ ti[0].path }})">
+<div class="jumbotron jumbotron-fluid" style="background-image: url({{ ti[0].path }})">
     {%- else -%}
     <div class="jumbotron">
         {%- endif -%}
     <div class="container">
         <h1 class="display-5">darkthecross workshop</h1>
         <p>Sufficently developed technology is indistinguishable from magic.</p>
+        <!-- <p> Author: <a href="/about/" class="text-muted"> Mingxiang Fan </a> </p> -->
     </div>
 </div>
 <div class="container">
@@ -21,9 +22,9 @@ layout: default
 
             {%- for cates in cposts -%}
 
-            {%- assign cate_page = site.pages | where: "name", cates.name -%}
+            {%- assign cate_page = site.pages | where: "title", cates.name -%}
 
-            <h3> <a class="text-dark" href="cate_page.url"> {{cates.name}} </a> </h3>
+            <h3> <a class="text-dark" href=" {{cate_page[0].url}} "> {{cates.name}} </a> </h3>
             <hr />
             <div class="row">
                 {%- for post in cates.items -%}

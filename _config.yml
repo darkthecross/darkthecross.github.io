@@ -21,6 +21,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "darkthecross.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 github_username:  darkthecross
+linkedin_url: https://www.linkedin.com/in/%E6%98%8E%E7%A5%A5-%E6%A8%8A-44b091b4/
 author: Mingxiang Fan
 # Build settings
 markdown: kramdown
