@@ -1,6 +1,11 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark mb-4">
 
-      <a class="navbar-brand" href="/"><img class="navbar-logo" src="assets/favicon.png"/> &nbsp; darkthecross workshop</a>
+    {%- assign ti = site.static_files | where: "name", "favicon.png" -%}
+    {%- if ti.size > 0 -%}
+        <a class="navbar-brand" href="/"><img class="navbar-logo" src=" {{ ti[0].path }} "/> &nbsp; darkthecross workshop</a>
+    {%- else -%}
+        <a class="navbar-brand" href="/"><img class="navbar-logo" src=" favicon.png "/> &nbsp; darkthecross workshop</a>
+    {%- endif -%}
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
         {%- assign ac = " active" -%}

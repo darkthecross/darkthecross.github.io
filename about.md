@@ -11,6 +11,6 @@ Always curious about new technologies, and interested in reality-related interac
 
 ~~Was once very athletic. Good at cooking. Play Dota2.~~
 
-Studied at Tsinghua University (2011-2015) and the University of Michigan (2016-2018).
+Graduated from Tsinghua University in 2015, then went to the University of Michigan (2016-2018).
 
-Worked at Mechmind Robotics as a Robot Algorithm Engieer, and is now working for Google as a Software Engineer on the Google Apps team. Not open to new positions, but would be glad to make new connections.
+Worked at Mechmind Robotics as a Robot Algorithm Engineer, but is now working for Google as a Software Engineer. Very open to make friends and build connections with geeks.

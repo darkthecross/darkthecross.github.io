@@ -1,7 +1,7 @@
 ---
 #layout: post
 layout: post
-title:  ff
+title:  long long title
 title-image: title_bg.png
 date:   2018-06-22 23:52:31 -0700
 category: Robotics

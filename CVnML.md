@@ -1,7 +1,7 @@
 ---
 layout: category
 title: Computer Vision and Machine Learning
-title-image: title_bg.png
+title-image: cvnml_banner.png
 permalink: /cvnml/
 ---
 

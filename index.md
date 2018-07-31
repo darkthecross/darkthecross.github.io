@@ -4,6 +4,6 @@
 
 layout: index
 title: index
-title-image: title_bg.png
+title-image: index_banner.png
 
 ---

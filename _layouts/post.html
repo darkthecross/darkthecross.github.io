@@ -7,25 +7,24 @@ layout: default
         <div class="col-1"></div>
         <div class="col-10">
 
-            <header class="post-header">
-                <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1> {%- assign cate = site.pages | where: "title", page.category -%} {%- if cate.size > 0 -%}
-                <a class="badge badge-light" href="{{cate[0].url}}"> {{cate[0].title}} </a> {%- endif -%}
-
-                <p class="post-meta">
-                    <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time> {%- if page.author -%} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
-                    {%- endif -%}</p>
-                {%- if page.description -%} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.description }}</span></span>
+            <h2 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h2> {%- assign cate = site.pages | where: "title", page.category -%} {%- if cate.size > 0 -%}
+            <p><a class="badge badge-dark" href="{{cate[0].url}}"> {{cate[0].title}} </a></p> {%- endif -%}
+                {%- if page.description -%}
+                <p class="description text-muted">{{ page.description }}</p>
                 {%- endif -%}
-            </header>
 
-            <div class="post-content e-content" itemprop="articleBody">
-                {{ content }}
-            </div>
+                {%- if page.github -%}
+                <p><a class="text-muted" target="_blank" href=" {{ page.github }} "> <i class="fab fa-github-square"></i> {{ page.title | escape }} </a></p>
+                {%- endif -%}
 
-            <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+
+              <hr />
+
+
+              <div class="post-content e-content" itemprop="articleBody">
+                  {{ content }}
+              </div>
+
 
         </div>
         <div class="col-1">
