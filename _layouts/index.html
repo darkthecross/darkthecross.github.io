@@ -19,8 +19,10 @@ layout: default
         <div class="container">
 
             {%- assign cposts = site.posts | group_by:"category" -%}
+            
+            {%- assign rcposts = cposts | reverse -%}
 
-            {%- for cates in cposts -%}
+            {%- for cates in rcposts -%}
 
             {%- assign cate_page = site.pages | where: "title", cates.name -%}
 

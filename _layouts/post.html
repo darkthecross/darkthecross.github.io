@@ -13,12 +13,11 @@ layout: default
                 <p class="description text-muted">{{ page.description }}</p>
                 {%- endif -%}
 
-                {%- if page.github -%}
-                <p><a class="text-muted" target="_blank" href=" {{ page.github }} "> <i class="fab fa-github-square"></i> {{ page.title | escape }} </a></p>
-                {%- endif -%}
-
-
               <hr />
+              
+              {%- if page.github -%}
+              <p><a class="text-muted" target="_blank" href=" {{ page.github }} "> <i class="fab fa-github-square"></i> {{ page.title | escape }} </a></p>
+              {%- endif -%}
 
 
               <div class="post-content e-content" itemprop="articleBody">
