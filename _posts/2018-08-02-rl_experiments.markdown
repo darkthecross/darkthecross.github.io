@@ -16,7 +16,11 @@ Reinforcement learning is a very popular yet very controversial topic in robotic
 
 I worked on this project to get some basic knowledge of reinforcement learning and have some fun solving problems automatically.
 
-All three problems solved in this project was using Q learning.
+All three problems in this project was solved using Q learning:
+
+'''
+A
+'''
 
 The cart-pole problem should be the easiest and most common one. Nothing mysterious here. It was solved in 456 steps, which is a pretty good (and lucky) score for q learning.
 
