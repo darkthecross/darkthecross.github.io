@@ -1,0 +1,87 @@
+--- 
+#layout: post 
+layout: post 
+title: "Reinforcement Learning Experiments" 
+date: 2018-08-02 00:52:31 -0700 
+category: Computer Vision and Machine Learning 
+description: This project includes some reinforcement learning experiments. 
+permalink: /rl_experiments.html
+title-image: rl_experiments_title.png 
+github: https://github.com/darkthecross/rl_experiments 
+---
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-12">
+            <p>
+                I worked on this project to get some basic knowledge of reinforcement learning and have some fun solving problems automatically.
+                All three problems in this project was solved using Q learning.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-12">
+            <pre>
+                <code>
+    Algorithm double_q_learning:
+        initialize Q_1 = Q_2, memory_deque = []
+        initialize explore_rate = 1, time_step = 0
+        initialize state
+        repeat:
+            action = select from (random_action, argmax(state, Q_1)) with explore_rate
+            new_state, reward, done = environment.step(action)
+            memory_deque.append( (state, action, new_state, reward, done) )
+            time_step += 1
+            explore_rate = max(explore_rate * explore_rate_decay, explore_rate_min)
+            if time_step % update_q2_steps == 0:
+                train_batch = sample(memory_deque)
+                q_val = bellman_qeuation(train_batch)
+                Q_2 = Q_2 + back_propagation(q_val)
+            if time_step % update_q1_steps == 0:
+                Q_1 = Q_2
+        until avg_game_reward > threshold
+                </code>
+            </pre>
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-9">
+            <p>
+                I used the template code from the
+                <a href="https://github.com/berkeleydeeprlcourse/homework">UCB RL course homework</a>
+                to solve the Atari games. It is a deep Q learning algorithm, with some best practice, including double Q networks. The agent
+                constantly achieved a average reward of over 20 on Pong-v0 after 4.3M of game steps.
+            </p>
+        </div>
+        <div class="col-3">
+            <img src="/assets/posts_img/rl_experiments/pong.gif">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p>
+                The cart-pole problem should be the easiest and most common one. Nothing mysterious here. It was solved in 456 steps, which
+                is a pretty good (and lucky) score for q learning.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p>
+                I also developed an apple-picker game environment, a easy problem to apply deep Q learning with convolutional neural network,
+                to test the code implementation. The problem was solved relatively easy, and should be a good start point
+                for complex problems.
+
+            </p>
+        </div>
+    </div>
+</div>

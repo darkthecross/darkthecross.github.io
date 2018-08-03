@@ -1,0 +1,76 @@
+--- 
+#layout: post 
+layout: post 
+title: "Depth Estimation From Single Image" 
+date: 2018-08-03 00:52:31 -0700 
+category: Computer Vision and Machine Learning 
+description: Estimating the depth of objects in a image using deep neural network. 
+permalink: /single_image_depth_estimation.html
+title-image: single_image_depth_estimation.png 
+github: https://github.com/darkthecross/SingleImageDepthEstimation
+---
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-12">
+            <p>
+            In this project, we aimed to solve the problem of estimating depth information from single images.
+            We tested our algorithms on both Kinect style data and correlating RGB image and Lidar data.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+            <div class="col-12">
+                <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Origin Image</th>
+                    <th scope="col">Ground Truth</th>
+                    <th scope="col">Predicted Depth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>
+                            <img src="/assets/posts_img/single_image_depth_estimation/0_origin_rgb.jpg" class="img-thumbnail img-fluid">
+                    </td>
+                    <td>
+                            <img src="/assets/posts_img/single_image_depth_estimation/0_origin_dps.jpg" class="img-thumbnail img-fluid">
+                    </td>
+                    <td>
+                            <img src="/assets/posts_img/single_image_depth_estimation/0_predicted_dps.jpg" class="img-thumbnail img-fluid">
+                    </td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+    <div class="row">
+
+        <div class="col-12">
+            <p>
+                Many sorts of deep neural networks was covered in this project, 
+                but we found that the network structure from 
+                <a href="http://papers.nips.cc/paper/5539-depth-map-prediction-from-a-single-image-using-a-multi-scale-deep-network.pdf">Eigen, et.al</a>
+                 worked best. We finally settled down and used a similiar network structure. 
+            </p>
+
+        </div>
+    </div>
+
+    <div class="row">
+
+            <div class="col-12">
+                <p>
+                    We also have a <a href="/assets/posts_img/single_image_depth_estimation/single-image-depth.pdf" target="_blank">pdf version of project report </a> including different metrics. 
+                </p>
+    
+            </div>
+        </div>
+
+
+</div>
