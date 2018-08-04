@@ -16,7 +16,7 @@ body {
     margin-right: 200px;
 }
 
- .page-container {
+.page-container {
     padding: 30px;
  }
 
@@ -31,4 +31,9 @@ body {
 
 .logo-img {
     max-height: 30px;
+}
+
+.project-card
+{
+    min-height: 300px;
 }

@@ -21,7 +21,7 @@ layout: default
                 {%- assign categorized_posts = site.posts | where: "category", page.title -%}
                 {%- if categorized_posts.size > 0 -%} {%- for post in categorized_posts -%}
                 <div class="col-md-4">
-                    <div class="card mb-4 shadow-lg">
+                    <div class="card mb-4 shadow-lg project-card">
                         {%- if post.title-image -%} {%- assign title_img_file = site.static_files | where: "name", post.title-image -%} {%- if title_img_file.size>0 -%}
                         <a href=" {{ post.permalink }} ">
         <img class="card-img-top" src=" {{ title_img_file[0].path }} " alt="Card image cap">

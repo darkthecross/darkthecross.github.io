@@ -31,7 +31,7 @@ layout: default
             <div class="row">
                 {%- for post in cates.items -%}
                 <div class="col-md-4">
-                    <div class="card mb-4 shadow-lg">
+                    <div class="card mb-4 shadow-lg project-card">
                         <!-- {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%} -->
                         {%- if post.title-image -%} {%- assign title_img_file = site.static_files | where: "name", post.title-image -%} {%- if title_img_file.size>0 -%}
                         <a href=" {{ post.permalink }} ">
