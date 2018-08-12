@@ -2,54 +2,57 @@
 layout: default
 ---
 
-{%- assign ti = site.static_files | where: "name", page.title-image -%}
-{%- if ti.size > 0 -%}
+ {%- assign ti = site.static_files | where: "name", page.title-image -%} {%- if ti.size > 0 -%}
 <div class="jumbotron jumbotron-fluid" style="background-image: url({{ ti[0].path }})">
     {%- else -%}
     <div class="jumbotron">
         {%- endif -%}
-    <div class="container">
-        <h1 class="display-5"> {{ site.title }} </h1>
-        <p> {{ site.memo }}</p>
-        <!-- <p> Author: <a href="/about/" class="text-muted"> Mingxiang Fan </a> </p> -->
-    </div>
-</div>
-<div class="container">
-    <div class="album">
         <div class="container">
-
-            {%- assign cposts = site.posts | group_by:"category" -%}
-            
-            {%- assign rcposts = cposts | reverse -%}
-
-            {%- for cates in rcposts -%}
-
-            {%- assign cate_page = site.pages | where: "title", cates.name -%}
-
-            <h3> <a class="text-dark" href=" {{cate_page[0].url}} "> {{cates.name}} </a> </h3>
-            <hr />
-            <div class="row">
-                {%- for post in cates.items -%}
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-lg project-card">
-                        <!-- {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%} -->
-                        {%- if post.title-image -%} {%- assign title_img_file = site.static_files | where: "name", post.title-image -%} {%- if title_img_file.size>0 -%}
-                        <a href=" {{ post.permalink }} ">
-        <img class="card-img-top" src=" {{ title_img_file[0].path }} " alt="Card image cap">
-</a> {%- endif -%} {%- endif -%}
-                        <div class="card-body">
-                            <a href=" {{ post.permalink }} ">
-                                <h5 class="card-title"> {{ post.title }} </h5>
-                            </a>
-                            <p class="card-text"> {{ post.description }} </p>
-                        </div>
-                    </div>
-                </div>
-                {%- endfor -%}
-            </div>
-
-            {%- endfor -%}
-
+            <h1 class="display-5"> {{ site.title }} </h1>
+            <p> {{ site.memo }}</p>
+            <!-- <p> Author: <a href="/about/" class="text-muted"> Mingxiang Fan </a> </p> -->
         </div>
     </div>
-</div>
+    <div class="container">
+        <div class="album">
+            <div class="container">
+
+                {%- assign cposts = site.posts | group_by:"category" -%}
+                {%- assign rcposts = cposts | reverse -%}
+                {%- for cates in rcposts -%}
+                {%- assign cate_page = site.pages | where: "title", cates.name -%}
+
+                <h3> <a class="text-dark" href=" {{cate_page[0].url}} "> {{cates.name}} </a> </h3>
+
+                <div class="row">
+                    {%- for post in cates.items -%}
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm project-card">
+                            <!-- {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%} -->
+                            {%- if post.title-image -%}
+                            {%- assign title_img_file = site.static_files | where: "name", post.title-image -%}
+                            {%- if title_img_file.size>0 -%}
+                            <a href=" {{ post.permalink }} ">
+        <img class="card-img-top" src=" {{ title_img_file[0].path }} " alt="Card image cap">
+</a> {%- endif -%} {%- endif -%}
+                            <div class="card-body">
+                                <a href=" {{ post.permalink }} ">
+                                    <h5 class="card-title"> {{ post.title }} </h5>
+                                </a>
+                                <p class="card-text"> {{ post.description }} </p>
+                            </div>
+                        </div>
+                    </div>
+                    {%- endfor -%}
+                </div>
+
+                {%- if cates != rcposts.last -%}
+                <hr />
+                {%- endif -%}
+
+
+                {%- endfor -%}
+
+            </div>
+        </div>
+    </div>
