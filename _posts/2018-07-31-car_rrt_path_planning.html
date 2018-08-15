@@ -22,12 +22,15 @@ github: https://github.com/darkthecross/car_rrt_path_planning
     </div>
 
     <div class="row">
-        <div class="col-12">
-            <p>
-                I can not remember why, but I built the RRT algorithm from ground up, including the KD-tree structure to efficently store and traverse
-                the RRT nodes. Here are two gifs showing the KD tree and RRT algorithm.
-            </p>
+            <div class="col-1"></div>
+        <div class="col-4">
+            k-d tree:
         </div>
+        <div class="col-2"></div>
+        <div class="col-4">
+                RRT:
+            </div>
+            <div class="col-1"></div>
     </div>
 
     <div class="row">
@@ -45,9 +48,40 @@ github: https://github.com/darkthecross/car_rrt_path_planning
     <div class="row">
         <div class="col-12">
             <p>
-                This project is still under development.
+                Then we need a local planner which could give us a feasible solution for simple situations.
+                It is not hard to derive a method to plan a path using the series of circles which lies
+                to the left of the initial and terminal states. Just find the tangent circles, since we
+                do not really need to guarantee to find a solution or find the optimal solution.
             </p>
         </div>
+    </div>
+
+    <div class="row">
+            <div class="col-1"></div>
+        <div class="col-4">
+            <img class="img-fluid img-thumbnail" src="/assets/posts_img/car_rrt_path_planning/img2.png" />
+        </div>
+        <div class="col-7"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p>
+                Finally, it works!
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+            <div class="col-1"></div>
+        <div class="col-4">
+            <img class="img-fluid img-thumbnail" src="/assets/posts_img/car_rrt_path_planning/map3.png" />
+        </div>
+        <div class="col-2"></div>
+        <div class="col-4">
+                <img class="img-fluid img-thumbnail" src="/assets/posts_img/car_rrt_path_planning/map3_solved.png" />
+            </div>
+            <div class="col-1"></div>
     </div>
 
 
