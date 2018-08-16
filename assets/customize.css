@@ -37,3 +37,8 @@ body {
 {
     min-height: 300px;
 }
+
+.project-img
+{
+    max-width: 300px;
+}
