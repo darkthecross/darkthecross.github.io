@@ -1,8 +1,8 @@
 ---
 layout: category
-title: Uncategorized
+title: Casual
 title-image: uncategorized_banner.png
-permalink: /uncategorized/
+permalink: /casual/
 ---
 
 Stay casual, stay amused.
