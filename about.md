@@ -4,7 +4,7 @@ title: about
 permalink: /about/
 
 author-name: Mingxiang Fan
-author-image: mf.jpg
+author-image: misaki.jpeg
 ---
 
 Always curious about new technologies, and interested in reality-related interactions, including robotics, robot perception, intelligent devices etc.

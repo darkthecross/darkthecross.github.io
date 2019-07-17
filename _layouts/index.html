@@ -2,58 +2,79 @@
 layout: default
 ---
 
- {%- assign ti = site.static_files | where: "name", page.title-image -%} {%- if ti.size > 0 -%}
-<div class="jumbotron jumbotron-fluid" style="background-image: url({{ ti[0].path }})">
-    {%- else -%}
-    <div class="jumbotron">
-        {%- endif -%}
-        <div class="container">
-            <h1 class="display-5"> {{ site.title }} </h1>
-            <p> {{ site.memo }}</p>
-            <!-- <p> Author: <a href="/about/" class="text-muted"> Mingxiang Fan </a> </p> -->
-        </div>
-    </div>
-    <div class="container">
-        <div class="album">
-            <div class="container">
+<!-- Title image -->
+<div class="container pt-5 mt-5 pb-3">
+    <h1 class="display-5"> {{ site.title }} </h1>
+    <p> {{ site.memo }}</p>
+</div>
 
-                {%- assign cposts = site.posts | group_by:"category" -%}
-                {%- assign sposts = cposts | sort: 'name' -%}
-                {%- assign rcposts = sposts | reverse -%}
-                {%- for cates in rcposts -%}
-                {%- assign cate_page = site.pages | where: "title", cates.name -%}
-
-                <h3> <a class="text-dark" href=" {{cate_page[0].url}} "> {{cates.name}} </a> </h3>
-
-                <div class="row">
-                    {%- for post in cates.items -%}
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm project-card">
-                            <!-- {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%} -->
-                            {%- if post.title-image -%}
-                            {%- assign title_img_file = site.static_files | where: "name", post.title-image -%}
-                            {%- if title_img_file.size>0 -%}
-                            <a href=" {{ post.permalink }} ">
-        <img class="card-img-top" src=" {{ title_img_file[0].path }} " alt="Card image cap">
-</a> {%- endif -%} {%- endif -%}
-                            <div class="card-body">
-                                <a href=" {{ post.permalink }} ">
-                                    <h5 class="card-title"> {{ post.title }} </h5>
-                                </a>
-                                <p class="card-text"> {{ post.description }} </p>
-                            </div>
-                        </div>
+<div class="container index-container">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="featured-tab" data-toggle="tab" href="#featured" role="tab" aria-controls="featured" aria-selected="true">Featured</a>
+    </li>
+    {%- assign cposts = site.posts | group_by:"category" -%}
+    {%- assign sposts = cposts | sort: 'name' -%}
+    {%- assign rcposts = sposts | reverse -%}
+    {%- for cates in rcposts -%}
+    <li class="nav-item">
+      <a class="nav-link" id="{{cates.name|slugify}}-tab" data-toggle="tab" href="#{{cates.name|slugify}}" role="tab" aria-controls="{{cates.name|slugify}}" aria-selected="false">{{cates.name}}</a>
+    </li>
+    {%- endfor -%}
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane container fade show active" id="featured" role="tabpanel" aria-labelledby="featured-tab">
+            <div class="row">
+        {%- assign posts_group_by_featured = site.posts | group_by:"featured" -%}
+        {%- assign true_featured_posts = posts_group_by_featured | where: "name", "true" -%}
+        {%- for posts_name_items in true_featured_posts -%}
+        {%- for post in posts_name_items.items-%}
+        <!-- Notice: only posts with proper title image will be shown here. -->
+        {%- if post.title-image -%}
+        {%- assign title_img_file = site.static_files | where: "name", post.title-image -%}
+        {%- if title_img_file.size>0 -%}
+        <div class="col-md-4 px-4 py-4">
+            <a class="card-link" href=" {{ post.permalink }} ">
+                <div class="shadow-sm project-card d-flex flex-column justify-content-end"
+                    style="background-image: url({{title_img_file[0].path}});">
+                    <div class="post-body post-body-normal">
+                        <h5 class="card-title"> {{ post.title }} </h5>
+                        <span class="badge badge-secondary">{{ post.category }}</span>
+                        <div class="post-description mt-3">{{post.description}}</div>
                     </div>
-                    {%- endfor -%}
                 </div>
-
-                {%- if cates != rcposts.last -%}
-                <hr />
-                {%- endif -%}
-
-
-                {%- endfor -%}
-
-            </div>
+            </a>
+        </div>
+        {%- endif -%}
+        {%- endif -%}
+        {%- endfor -%}
+        {%- endfor -%}
         </div>
     </div>
+    {%- for cates in rcposts -%}
+    <div class="tab-pane container fade" id="{{cates.name|slugify}}" role="tabpanel" aria-labelledby="{{cates.name|slugify}}-tab">
+        <div class="row">
+        {%- for post in cates.items -%}
+        <!-- Notice: only posts with proper title image will be shown here. -->
+        {%- if post.title-image -%}
+        {%- assign title_img_file = site.static_files | where: "name", post.title-image -%}
+        {%- if title_img_file.size>0 -%}
+        <div class="col-md-4 px-4 py-4">
+            <a class="card-link" href=" {{ post.permalink }} ">
+                <div class="shadow-sm project-card d-flex flex-column justify-content-end"
+                    style="background-image: url({{title_img_file[0].path}});">
+                    <div class="post-body post-body-normal">
+                        <h5 class="card-title"> {{ post.title }} </h5>
+                        <span class="badge badge-secondary">{{ post.category }}</span>
+                        <div class="post-description mt-3">{{post.description}}</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {%- endif -%} {%- endif -%}
+        {%- endfor -%}
+        </div>
+    </div>
+    {%- endfor -%}
+  </div>
+</div>

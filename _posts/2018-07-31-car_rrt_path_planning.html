@@ -4,33 +4,37 @@ layout: post
 title: "Car RRT Path Planning"
 date: 2018-07-31 00:52:31 -0700
 category: Robotics
-description: Non-holonomic motion planning.
+featured: true
+description: Non-holonomic motion planning, rapidly-exploring random tree.
 permalink: /car_rrt_path_planning.html
-title-image: car_rrt_path_planning_title.png
+title-image: rrt_small.gif
 github: https://github.com/darkthecross/car_rrt_path_planning
 ---
 
 <div class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-9">
             <p>
-            I saw an interesting image on the book <span class="font-italic">Planning Algorithms</span>,
-            showing the path planning result for a car which can only turn left to drive through a complex environment.
-            Thus I want to do the non-holonomic planning by myself.
+                I saw an interesting image on the book <span class="font-italic">Planning Algorithms</span>,
+                showing the path planning result for a car which can only turn left to drive through a complex
+                environment.
+                Thus I want to do the non-holonomic planning by myself.
             </p>
         </div>
-    </div>
-
-    <div class="row">
-                <div class="col-md-4">
-        <div class="card mb-4 shadow-sm project-img">
-<img class="card-img-top" src="/assets/posts_img/car_rrt_path_planning/rrt_small.gif" alt="">
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm project-img">
+                <img class="card-img-top" src="/assets/posts_img/car_rrt_path_planning/rrt_small.gif" alt="">
+            </div>
         </div>
-                    </div>
     </div>
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm project-img">
+                <img class="card-img-top" src="/assets/posts_img/car_rrt_path_planning/img2.png" alt="">
+            </div>
+        </div>
+        <div class="col-9">
             <p>
                 Then we need a local planner which could give us a feasible solution for simple situations.
                 It is not hard to derive a method to plan a path using the series of circles which lies
@@ -39,15 +43,6 @@ github: https://github.com/darkthecross/car_rrt_path_planning
             </p>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-4">
-        <div class="card mb-4 shadow-sm project-img">
-<img class="card-img-top" src="/assets/posts_img/car_rrt_path_planning/img2.png" alt="">
-        </div>
-                    </div>
-    </div>
-
     <div class="row">
         <div class="col-12">
             <p>
@@ -56,22 +51,16 @@ github: https://github.com/darkthecross/car_rrt_path_planning
         </div>
     </div>
 
-
-
     <div class="row">
         <div class="col-md-4">
-
-        <div class="card mb-4 shadow-sm project-img">
-<img class="card-img-top" src="/assets/posts_img/car_rrt_path_planning/map3.png" alt="">
-        </div>
-    </div>
-        <div class="col-md-4">
-        <div class="card mb-4 shadow-sm project-img">
-<img class="card-img-top" src="/assets/posts_img/car_rrt_path_planning/map3_solved.png" alt="">
-        </div>
+            <div class="card mb-4 shadow-sm project-img">
+                <img class="card-img-top" src="/assets/posts_img/car_rrt_path_planning/map3.png" alt="">
             </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm project-img">
+                <img class="card-img-top" src="/assets/posts_img/car_rrt_path_planning/map3_solved.png" alt="">
+            </div>
+        </div>
     </div>
-
-
-
 </div>

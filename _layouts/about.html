@@ -14,7 +14,7 @@ layout: default
         </div>
         <div class = "col-3">
             {%- assign author_img = site.static_files | where: "name", page.author-image -%}
-            <img id="author-img" class="img-fluid rounded-circle" src="{{author_img[0].path}}" />
+            <img id="author-img" class="img-fluid" src="{{author_img[0].path}}" />
         </div>
         <div class = "col-1">
         </div>
