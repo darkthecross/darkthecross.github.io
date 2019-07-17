@@ -13,8 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Mingxiang's Projects
-memo: Any Sufficiently advanced technology is indistinguishable from magic.
+title: Any Sufficiently advanced technology is indistinguishable from magic.
 email: fanmx@umich.edu
 description: >- # this means to ignore newlines until "baseurl:"
   This is the personal website of Mingxiang Fan (AKA darkthecross).

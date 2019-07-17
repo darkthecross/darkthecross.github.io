@@ -23,7 +23,7 @@
 }
 
 .card-title {
-    color:#efefef;
+    color: white;
     text-decoration: none;
 }
 
@@ -33,7 +33,7 @@
 
 .post-description {
     visibility: hidden;
-    color:#efefef;
+    color: white;
     transition-delay: 0.4s;
 }
 
@@ -79,6 +79,6 @@
 
 /* Light Theme */
 body {
-    background-color: #efefef;
+    background-color: white;
     color: #2a2a2a;
 }
