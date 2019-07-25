@@ -14,16 +14,16 @@
 
 /* Project cards */
 .project-card {
-    background-size:     cover;
-    background-repeat:   no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: center center;
     min-height: 300px;
     transition: 0.4s;
-    height:100%;
+    height: 100%;
 }
 
 .card-title {
-    color: white;
+    color: #2a2a2a;
     text-decoration: none;
 }
 
@@ -33,14 +33,14 @@
 
 .post-description {
     visibility: hidden;
-    color: white;
+    color: #2a2a2a;
     transition-delay: 0.4s;
 }
 
 .post-body {
     width: 100%;
     padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     transition: 0.4s;
 }
 
@@ -53,7 +53,7 @@
 }
 
 /* Navbar. */
-#nav-bar{
+#nav-bar {
     height: 50px;
 }
 
@@ -81,4 +81,10 @@
 body {
     background-color: white;
     color: #2a2a2a;
+}
+
+/* Video size */
+video {
+    width: 100% !important;
+    height: auto !important;
 }

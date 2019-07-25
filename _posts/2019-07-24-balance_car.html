@@ -1,0 +1,46 @@
+---
+#layout: post
+layout: post
+title: "Balance Car"
+date: 2019-07-24 00:52:31 -0700
+category: Robotics
+featured: true
+description: PID control, embedded system
+permalink: /balance_car.html
+title-image: balance_car_sim.gif
+github: https://github.com/darkthecross/balance_car
+---
+
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            <p>
+                It would be super cool to implement some algorithm on real hardware! Thus I bought a toolkit for 
+                a balance car from <a href="https://miaowlabs.com/" target="_blank">MiaoWLab</a> and started building a balance car. 
+                The first step would definitely be testing the algorithm in simulation. I created the URDF file for the balance car, 
+                and tested (and tuned) my PID control algorithm with pybullet.
+            </p>
+        </div>
+        <div class="col-md-5">
+            <div class="card mb-4 shadow-sm project-img">
+                <img class="card-img-top" src="/assets/posts_img/balance_car/balance_car_sim.gif" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <video class="embed-responsive-item" controls autoplay muted>
+                <source src="/assets/posts_img/balance_car/balance_car_real.MP4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+        </div>
+        <div class="col-9">
+            <p>
+                The next step is to implement the algorithm in C, and upload it to the embedded system. Yes, raw C, yes,
+                 upload through Keli, into a C51-like single chip microcomputer. Luckily, with the IMU and the pre-defined 
+                 control interface for the wheels, it was not super hard to do this. And it worked!
+            </p>
+        </div>
+    </div>
+</div>
