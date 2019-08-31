@@ -1,7 +1,6 @@
 /* Move down the main contents of the page to leave space for navbar */
 .post-container {
     padding: 30px;
-    margin-top: 80px;
 }
 
 .index-container {

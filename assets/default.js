@@ -2,6 +2,7 @@
 
 // Navbar animation
 
+/*
 function showNav() {
     document.getElementById('nav-bar').classList.remove('nav-hidden');
     document.getElementById('nav-bar').classList.add('nav-show');
@@ -23,6 +24,7 @@ document.addEventListener('scroll', function () {
     }
     lastScrollPos = currScrollPos;
 });
+*/
 
 // Project cards action
 
