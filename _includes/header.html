@@ -1,24 +1,26 @@
 <nav class="navbar navbar-expand-sm navbar-light mb-4 flex-row" id="nav-bar">
+  <div class="container-fluid">
+    <div class="navbar-brand w-100 ml-0 mr-auto">
+      {%- assign ti = site.static_files | where: "name", "favicon.png" -%}
+      {%- if ti.size > 0 -%}
+      <a class="navbar-brand" href="/"><img class="navbar-logo" src=" {{ ti[0].path }} " /> &nbsp; darkthecross
+        workshop</a>
+      {%- else -%}
+      <a class="navbar-brand" href="/"><img class="navbar-logo" src=" favicon.png " /> &nbsp; darkthecross workshop</a>
+      {%- endif -%}
+    </div>
 
-  <div class="navbar-brand w-100 ml-0 mr-auto">
-  {%- assign ti = site.static_files | where: "name", "favicon.png" -%}
-  {%- if ti.size > 0 -%}
-  <a class="navbar-brand" href="/"><img class="navbar-logo" src=" {{ ti[0].path }} " /> &nbsp; darkthecross workshop</a>
-  {%- else -%}
-  <a class="navbar-brand" href="/"><img class="navbar-logo" src=" favicon.png " /> &nbsp; darkthecross workshop</a>
-  {%- endif -%}
-  </div>
-
-  <div class="navbar-collapse collapse navbar-collapse ml-auto" id="navbarCollapse">
-    <!-- active: highlight current page -->
-    {%- assign ac = " active" -%}
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link {%- if page.title=='index' -%} {{ac}} {%- endif -%} " href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {%- if page.title=='about' -%} {{ac}} {%- endif -%} " href="/about/">About</a>
-      </li>
-    </ul>
+    <div class="navbar-collapse collapse justify-content-end " id="navbarCollapse">
+      <!-- active: highlight current page -->
+      {%- assign ac = " active" -%}
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link {%- if page.title=='index' -%} {{ac}} {%- endif -%} " href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {%- if page.title=='about' -%} {{ac}} {%- endif -%} " href="/about/">About</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

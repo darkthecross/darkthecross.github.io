@@ -21,22 +21,9 @@
     <div class="col-18 col-md">
       <h5>Links</h5>
       <ul class="list-unstyled text-small">
-        <li>The beloved one: <a class="text-muted" target="_blank" href="http://www.siqichen.me">Siseventeen</a></li>
         <li>This site was made with: <a class="text-muted" target="_blank" href="http://jekyllrb.com"><i class="fas fa-vial"></i>Jekyll</a></li>
         <li>Hosted with ❤ by : <a class="text-muted" target="_blank" href="http://github.com"> <i class="fab fa-github-square"></i> Github</a></li>
       </ul>
     </div>
   </div>
 </footer>
-
-<!-- bootstrap -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-
-<!-- self-defined js -->
-{%- for file in site.static_files -%}
-{%- if file.extname == ".js" -%}
-<script src="{{file.path}}"></script>
-{%- endif -%}
-{%- endfor -%}

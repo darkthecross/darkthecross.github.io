@@ -32,8 +32,8 @@ var projectCards = document.getElementsByClassName('project-card');
 for (var el of projectCards) {
     el.addEventListener('mouseenter', function (e) {
         // shadow
-        this.classList.remove('shadow-sm');
-        this.classList.add('shadow-lg');
+        this.classList.remove('post-shadow-sm');
+        this.classList.add('post-shadow-lg');
         // description
         var postBody = this.getElementsByClassName('post-body');
         postBody[0].classList.remove('post-body-normal');
@@ -44,8 +44,8 @@ for (var el of projectCards) {
     });
     el.addEventListener('mouseleave', function (e) {
         // shadow
-        this.classList.remove('shadow-lg');
-        this.classList.add('shadow-sm');
+        this.classList.remove('post-shadow-lg');
+        this.classList.add('post-shadow-sm');
         // description
         var postBody = this.getElementsByClassName('post-body');
         postBody[0].classList.remove('post-body-hover');
@@ -53,6 +53,5 @@ for (var el of projectCards) {
         var description = postBody[0].getElementsByClassName('post-description');
         description[0].style.transitionDelay = '0s';
         description[0].style.visibility = 'hidden';
-
     });
 }
