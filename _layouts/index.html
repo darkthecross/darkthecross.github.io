@@ -4,8 +4,8 @@ layout: default
 
 <!-- Title image -->
 <div class="container pt-3 pb-3">
-    <h3> {{ site.title }} </h3>
-    <p> --<a href="/about/" class="text-muted">Mingxiang</a>'s Projects </p>
+    <h3 class="text-center"> {{ site.title }} </h3>
+    <p class="text-center"> --<a href="/about/" class="text-muted">Mingxiang</a>'s Projects </p>
 </div>
 
 <div class="container index-container">
@@ -16,16 +16,17 @@ layout: default
         {%- if title_img_file.size>0 -%}
 
         {%- if post.featured -%}
-        <div class="post-shadow-sm project-card featured-card" style="background-image: url({{title_img_file[0].path}});">
-        {%- else -%}
-        <div class="post-shadow-sm project-card" style="background-image: url({{title_img_file[0].path}});">
-        {%- endif -%}
+        <div class="post-shadow-sm project-card featured-card"
+            style="background-image: url({{title_img_file[0].path}});">
+            {%- else -%}
+            <div class="post-shadow-sm project-card" style="background-image: url({{title_img_file[0].path}});">
+                {%- endif -%}
                 <a href=" {{ post.permalink }} " class="w-100 h-100">
-                <div class="post-body post-body-normal">
-                    <h5 class="card-title"> {{ post.title }} </h5>
-                    <span class="badge bg-secondary">{{ post.category }}</span>
-                    <div class="post-description mt-3">{{ post.description }}</div>
-                </div>
+                    <div class="post-body post-body-normal">
+                        <h5 class="card-title"> {{ post.title }} </h5>
+                        <span class="badge bg-secondary">{{ post.category }}</span>
+                        <div class="post-description mt-3">{{ post.description }}</div>
+                    </div>
                 </a>
             </div>
             {%- endif -%} {%- endif -%}
