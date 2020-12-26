@@ -156,3 +156,14 @@ canvas {
     border: none;
     min-height: 300px;
 }
+
+/* Misc */
+.del-text {
+    text-decoration: line-through;
+}
+
+.bg-w {
+    background-color: white;
+    width: 90px;
+    height: 90px;
+}
