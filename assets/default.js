@@ -55,3 +55,9 @@ for (var el of projectCards) {
         description[0].style.visibility = 'hidden';
     });
 }
+
+window.onload = (event) => {
+    var index_container = document.getElementsByClassName("container");
+    index_container[0].classList.remove('preload');
+    index_container[0].classList.add('postload');
+}

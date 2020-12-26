@@ -122,8 +122,3 @@ window.addEventListener("resize", () => {
 });
 
 window.addEventListener("mousemove", onMouseMove);
-
-window.addEventListener("load", ()=>{
-    var canvases = document.getElementsByTagName("canvas");
-    canvases[0].classList.add('canvas-loaded');
-});
