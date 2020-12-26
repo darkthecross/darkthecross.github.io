@@ -1,0 +1,50 @@
+---
+layout: post
+title: "Iterative LQR planner"
+date: 2020-12-25 00:52:31 -0700
+category: Robotics
+featured: true
+description: Iterative LQR, with zero control initialization and self-defined potential. Should be safe to use if you want to build a self driving car.
+permalink: /ilqr.html
+title-image: mobile_optimizer.gif
+github: https://github.com/darkthecross/mobile_planner
+---
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <p>
+                So, in practical mobile robot motion planning, we want to have a nice trajectory, which does not only avoids collision with other agents, but is 
+                also kinematically feasible.
+            </p>
+            <p>
+                To achieve this, we can use optimization based algorithms. Given a feasible initial trajectory, and properly bootstraped costs, we are able to get the optimal 
+                trajectory with iterative linear quadratic regulation. 
+            </p>
+            <p>
+                We're basically able to define cost of any shape, on any kinematic terms, including position, velocity and even acceleration. In iterative LQR, we find the local
+                quadratic approximation of the cost functions, and run LQR to get the input of the next iteration. We can end the iteration based on some criterial, like absolute 
+                tolerance or relative tolerance -- if the optimization step can not change the trajectory much, we should be very close to the minima. Or the local minima :/
+            </p>
+        </div>
+        <div class="col-6">
+            <img class="card-img-top" src="/assets/posts_img/mobile_planner/math1.png" alt="">
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm project-img">
+                <img class="card-img-top" src="/assets/posts_img/mobile_planner/mobile_optimizer.gif" alt="">
+            </div>
+        </div>
+        <div class="col-9">
+            <p>
+                As shown in the gif to the left, with the zero control initialization, we found a trajectory which stayed away from the objects. Things could be trickier if we 
+                have different type of costs, or if we have worse initialization (which may drive the car off the road in the worst cases).
+            </p>
+        </div>
+    </div>
+
+</div>

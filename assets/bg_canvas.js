@@ -1,5 +1,6 @@
 var camera, scene, renderer, stars = [], star_vs = [];
 var mouse_star, plane;
+var lines = [];
 const mouse = new THREE.Vector2();
 const raycaster = new THREE.Raycaster();
 
@@ -22,8 +23,8 @@ function init() {
     plane.position.z = -500.0;
     scene.add(plane);
 
-    const mouse_star_geometry = new THREE.SphereGeometry(3, 32, 32)
-    var mouse_star_material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    const mouse_star_geometry = new THREE.SphereGeometry(0.5, 32, 32)
+    var mouse_star_material = new THREE.MeshBasicMaterial({ color: 0xffffff });
     mouse_star = new THREE.Mesh(mouse_star_geometry, mouse_star_material)
     mouse_star.position.x = Math.random() * 1000 - 500;
     mouse_star.position.y = Math.random() * 1000 - 500;
@@ -70,9 +71,42 @@ function render() {
         mouse_star.position.y = int_o.point.y;
     });
 
-    if (stars.length < 500) {
+    if (stars.length < 100) {
         addSingleSphere();
+        for(var i = 0; i<stars.length-1; i++) {
+            var lineGeom = new THREE.Geometry();
+            lineGeom.vertices.push(stars[i].position);
+            lineGeom.vertices.push(stars[stars.length-1].position);
+            var lineMat = new THREE.LineBasicMaterial({
+              color: "yellow"
+            });
+            var line = new THREE.Line(lineGeom, lineMat);
+            scene.add(line);
+            lines.push(line);
+        }
+        var lineGeom = new THREE.Geometry();
+        lineGeom.vertices.push(mouse_star.position);
+        lineGeom.vertices.push(stars[stars.length-1].position);
+        var lineMat = new THREE.LineBasicMaterial({
+          color: "yellow"
+        });
+        var line = new THREE.Line(lineGeom, lineMat);
+        scene.add(line);
+        lines.push(line);
     }
+
+    for(var i = 0; i<lines.length; i++) {
+        lines[i].geometry.verticesNeedUpdate = true;
+        const v1 = lines[i].geometry.vertices[0];
+        const v2 = lines[i].geometry.vertices[1];
+        const distance = v1.distanceTo( v2 );
+        if(distance < 100.0) {
+            lines[i].material.color.setHex(0x333333);
+        } else {
+            lines[i].material.color.setHex(0x101010);
+        }
+    }
+
     requestAnimationFrame(render);
     renderer.render(scene, camera);
     animateStars();

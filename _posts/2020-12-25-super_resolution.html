@@ -1,0 +1,41 @@
+---
+layout: post
+title: "Image Super Resolution"
+date: 2020-12-25 00:02:31 -0700
+category: ML
+featured: false
+description: Deep learning, CNN.
+permalink: /image_super_resolution.html
+title-image: eval_2.png
+github: https://github.com/darkthecross/super_resolution
+---
+
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <p>
+                I recently bought an RTX 3090 graphics card. It has 24G memory, which should be able to handle STOA CNNs in 2016 or 2017. So why don't us feed a lot of images 
+                to this beast and let it learn something...
+            </p>
+            <p>
+                A good thing to try is super resolution for videos. Some videos, especially old ones, are often of bad resolution, and if we can recover them with ML models, it 
+                would be great.
+            </p>
+            <p>
+                The network structure was based on this <a class="text-muted" href="http://krasserm.github.io/2019/09/04/super-resolution/" target="_blank">webpage</a>, which has ~300k params. 
+                Let's try on a single image first...
+            </p>
+            <p>
+                Turned out that the trained model was able to recover the image slightly better than cubic interpolation...
+            </p>
+            <img class="img-fluid" src="/assets/posts_img/image_super_resolution/eval_2.png" />
+            <p class="mt-3">
+                Well, we should also try if this works with video. Feeding 5 consecutive frames into the neural network... (See github for network details). And it did not work, the error was even larger 
+                than recovering from a single image, and that's bad. For ML systems, it happends.
+            </p>
+        </div>
+        <div class="col-3">
+            <img class="img-fluid" src="/assets/posts_img/image_super_resolution/edsr.png" />
+        </div>
+    </div>
+</div>
