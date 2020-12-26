@@ -78,7 +78,8 @@ function render() {
             lineGeom.vertices.push(stars[i].position);
             lineGeom.vertices.push(stars[stars.length-1].position);
             var lineMat = new THREE.LineBasicMaterial({
-              color: "yellow"
+              color: new THREE.Color( 0x333333 ),
+              transparent: true,
             });
             var line = new THREE.Line(lineGeom, lineMat);
             scene.add(line);
@@ -88,7 +89,8 @@ function render() {
         lineGeom.vertices.push(mouse_star.position);
         lineGeom.vertices.push(stars[stars.length-1].position);
         var lineMat = new THREE.LineBasicMaterial({
-          color: "yellow"
+          color: new THREE.Color( 0x333333 ),
+          transparent: true,
         });
         var line = new THREE.Line(lineGeom, lineMat);
         scene.add(line);
@@ -101,9 +103,9 @@ function render() {
         const v2 = lines[i].geometry.vertices[1];
         const distance = v1.distanceTo( v2 );
         if(distance < 100.0) {
-            lines[i].material.color.setHex(0x333333);
+            lines[i].material.opacity = 1.0;
         } else {
-            lines[i].material.color.setHex(0x101010);
+            lines[i].material.opacity = 0.0;
         }
     }
 
