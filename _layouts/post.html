@@ -1,34 +1,56 @@
 ---
 layout: default
 ---
-<div class="container post-container">
+<article class="container post-container">
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
 
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
+      <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
 
-            <h2 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h2> {%- assign cate = site.pages | where: "title", page.category -%} {%- if cate.size > 0 -%}
-            <p><a class="badge badge-dark" href="{{cate[0].url}}"> {{cate[0].title}} </a></p> {%- endif -%}
-                {%- if page.description -%}
-                <p class="description text-muted">{{ page.description }}</p>
-                {%- endif -%}
+      <p class="post-meta text-muted">
+        <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+        {%- if page.category -%}
+        &middot; <a class="badge bg-secondary" href="/categories/{{ page.category | slugify }}/">{{ page.category }}</a>
+        {%- endif -%}
+      </p>
 
-              <hr />
-              
-              {%- if page.github -%}
-              <p><a class="text-muted" target="_blank" href=" {{ page.github }} "> <i class="fab fa-github-square"></i> {{ page.title | escape }} </a></p>
-              {%- endif -%}
+      {%- if page.tags and page.tags.size > 0 -%}
+      <p class="post-tags">
+        {%- for tag in page.tags -%}
+        <a class="tag-chip" href="/tags/{{ tag | slugify }}/">#{{ tag }}</a>
+        {%- endfor -%}
+      </p>
+      {%- endif -%}
 
+      {%- if page.description -%}
+      <p class="description text-muted">{{ page.description }}</p>
+      {%- endif -%}
 
-              <div class="post-content e-content" itemprop="articleBody">
-                  {{ content }}
-              </div>
+      <hr />
 
+      {%- if page.github -%}
+      <p><a class="text-muted" target="_blank" href="{{ page.github }}"><i class="fab fa-github-square"></i> {{ page.title | escape }}</a></p>
+      {%- endif -%}
 
-        </div>
-        <div class="col-1">
-        </div>
+      <div class="post-content e-content" itemprop="articleBody">
+        {{ content }}
+      </div>
+
+      {%- if page.previous or page.next -%}
+      <nav class="post-nav d-flex justify-content-between mt-5 pt-3 border-top">
+        {%- if page.previous -%}
+        <a class="post-nav-link post-nav-prev" href="{{ page.previous.url }}">&larr; {{ page.previous.title }}</a>
+        {%- else -%}
+        <span></span>
+        {%- endif -%}
+        {%- if page.next -%}
+        <a class="post-nav-link post-nav-next" href="{{ page.next.url }}">{{ page.next.title }} &rarr;</a>
+        {%- endif -%}
+      </nav>
+      {%- endif -%}
 
     </div>
-
-</div>
+    <div class="col-lg-1"></div>
+  </div>
+</article>

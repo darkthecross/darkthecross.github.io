@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<div class="container pt-3 pb-3">
+  <p class="text-center"><a class="text-muted" href="/blog/">&larr; All posts</a></p>
+  <h1 class="text-center">{% if page.autopages %}{{ page.autopages.display_name }}{% endif %}</h1>
+  <p class="text-center text-muted">{{ paginator.total_posts }} post{% if paginator.total_posts != 1 %}s{% endif %} in this category</p>
+</div>
+
+<div class="container index-container">
+  <div class="index-projects-div">
+    {%- for post in paginator.posts -%}
+    {%- include post_card.html post=post -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- include pagination_nav.html -%}

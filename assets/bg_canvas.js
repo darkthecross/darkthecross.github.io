@@ -1,126 +1,142 @@
-var camera, scene, renderer, stars = [], star_vs = [];
-var mouse_star, plane;
-var lines = [];
-const mouse = new THREE.Vector2();
-const raycaster = new THREE.Raycaster();
+/*jshint esversion: 6 */
 
-function init() {
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.z = 5;
+// Dependency-free canvas2D starfield: a handful of drifting points, connected
+// by faint lines when close together, plus a cursor-follower. Colors are kept
+// in sync with the --ink / --accent tokens in default.css.
 
-    scene = new THREE.Scene();
+(function () {
+    'use strict';
 
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    var DOT_COLOR = '223, 227, 232';
+    var LINE_COLOR = '54, 209, 220';
+    var LINK_DIST = 140;
+    var POINT_COUNT = 90;
 
-    document.body.appendChild(renderer.domElement);
+    var reduceMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const geometry = new THREE.PlaneBufferGeometry(1000, 1000);
-    const material = new THREE.MeshBasicMaterial({ color: 0x101010, side: THREE.DoubleSide });
-    plane = new THREE.Mesh(geometry, material);
-    plane.position.x = 0.0;
-    plane.position.y = 0.0;
-    plane.position.z = -500.0;
-    scene.add(plane);
+    var canvas = document.createElement('canvas');
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
 
-    const mouse_star_geometry = new THREE.SphereGeometry(0.5, 32, 32)
-    var mouse_star_material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-    mouse_star = new THREE.Mesh(mouse_star_geometry, mouse_star_material)
-    mouse_star.position.x = Math.random() * 1000 - 500;
-    mouse_star.position.y = Math.random() * 1000 - 500;
-    mouse_star.position.z = -500.0;
-    scene.add(mouse_star);
-}
+    var width, height, dpr;
+    var points = [];
+    var mouse = { x: null, y: null };
 
-function addSingleSphere() {
-    var geometry = new THREE.SphereGeometry(0.5, 32, 32)
-    var material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-    var sphere = new THREE.Mesh(geometry, material)
-    sphere.position.x = Math.random() * 1000 - 500;
-    sphere.position.y = Math.random() * 1000 - 500;
-    sphere.position.z = -500.0;
-    scene.add(sphere);
-    stars.push(sphere);
-    star_vs.push(new THREE.Vector2(Math.random() * 1 - 0.5, Math.random() * 1 - 0.5));
-}
+    function makePoint() {
+        return {
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.25,
+            vy: (Math.random() - 0.5) * 0.25
+        };
+    }
 
-function animateStars() {
-    for (var i = 0; i < stars.length; i++) {
-        star = stars[i];
-        star.position.x += star_vs[i].x;
-        star.position.y += star_vs[i].y;
+    function resize() {
+        dpr = window.devicePixelRatio || 1;
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
 
-        if (star.position.x < -500 || star.position.x > 500 || star.position.y < -500 || star.position.y > 500) {
-            star.position.x = Math.random() * 1000 - 500;
-            star.position.y = Math.random() * 1000 - 500;
-            star_vs[i] = new THREE.Vector2(Math.random() * 1 - 0.5, Math.random() * 1 - 0.5);
+    function init() {
+        resize();
+        var count = reduceMotion ? Math.round(POINT_COUNT * 0.6) : POINT_COUNT;
+        points = [];
+        for (var i = 0; i < count; i++) {
+            points.push(makePoint());
         }
     }
-}
 
-function onMouseMove( event ) {
-	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-}
-
-function render() {
-    raycaster.setFromCamera( mouse, camera );
-    int_obj = raycaster.intersectObject(plane);
-    int_obj.forEach((int_o)=>{
-        mouse_star.position.x = int_o.point.x;
-        mouse_star.position.y = int_o.point.y;
-    });
-
-    if (stars.length < 100) {
-        addSingleSphere();
-        for(var i = 0; i<stars.length-1; i++) {
-            var lineGeom = new THREE.Geometry();
-            lineGeom.vertices.push(stars[i].position);
-            lineGeom.vertices.push(stars[stars.length-1].position);
-            var lineMat = new THREE.LineBasicMaterial({
-              color: new THREE.Color( 0x333333 ),
-              transparent: true,
-            });
-            var line = new THREE.Line(lineGeom, lineMat);
-            scene.add(line);
-            lines.push(line);
+    function step() {
+        for (var i = 0; i < points.length; i++) {
+            var p = points[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
         }
-        var lineGeom = new THREE.Geometry();
-        lineGeom.vertices.push(mouse_star.position);
-        lineGeom.vertices.push(stars[stars.length-1].position);
-        var lineMat = new THREE.LineBasicMaterial({
-          color: new THREE.Color( 0x333333 ),
-          transparent: true,
+    }
+
+    function linkAlpha(dist, maxDist, peak) {
+        return Math.max(0, 1 - dist / maxDist) * peak;
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (var i = 0; i < points.length; i++) {
+            for (var j = i + 1; j < points.length; j++) {
+                var dx = points[i].x - points[j].x;
+                var dy = points[i].y - points[j].y;
+                var dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < LINK_DIST) {
+                    ctx.strokeStyle = 'rgba(' + LINE_COLOR + ', ' + linkAlpha(dist, LINK_DIST, 0.35) + ')';
+                    ctx.beginPath();
+                    ctx.moveTo(points[i].x, points[i].y);
+                    ctx.lineTo(points[j].x, points[j].y);
+                    ctx.stroke();
+                }
+            }
+
+            if (mouse.x !== null) {
+                var mdx = points[i].x - mouse.x;
+                var mdy = points[i].y - mouse.y;
+                var mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                var mouseLinkDist = LINK_DIST * 1.4;
+                if (mdist < mouseLinkDist) {
+                    ctx.strokeStyle = 'rgba(' + LINE_COLOR + ', ' + linkAlpha(mdist, mouseLinkDist, 0.5) + ')';
+                    ctx.beginPath();
+                    ctx.moveTo(points[i].x, points[i].y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        ctx.fillStyle = 'rgba(' + DOT_COLOR + ', 0.8)';
+        for (var k = 0; k < points.length; k++) {
+            ctx.beginPath();
+            ctx.arc(points[k].x, points[k].y, 1.4, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        if (mouse.x !== null) {
+            ctx.fillStyle = 'rgba(' + LINE_COLOR + ', 0.9)';
+            ctx.beginPath();
+            ctx.arc(mouse.x, mouse.y, 2.4, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function loop() {
+        step();
+        draw();
+        requestAnimationFrame(loop);
+    }
+
+    init();
+    draw();
+
+    if (!reduceMotion) {
+        requestAnimationFrame(loop);
+        window.addEventListener('mousemove', function (e) {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
         });
-        var line = new THREE.Line(lineGeom, lineMat);
-        scene.add(line);
-        lines.push(line);
     }
 
-    for(var i = 0; i<lines.length; i++) {
-        lines[i].geometry.verticesNeedUpdate = true;
-        const v1 = lines[i].geometry.vertices[0];
-        const v2 = lines[i].geometry.vertices[1];
-        const distance = v1.distanceTo( v2 );
-        if(distance < 100.0) {
-            lines[i].material.opacity = 1.0;
-        } else {
-            lines[i].material.opacity = 0.0;
-        }
-    }
-
-    requestAnimationFrame(render);
-    renderer.render(scene, camera);
-    animateStars();
-}
-
-init();
-render();
-
-window.addEventListener("resize", () => {
-    document.body.removeChild(renderer.domElement);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-});
-
-window.addEventListener("mousemove", onMouseMove);
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            init();
+            draw();
+        }, 150);
+    });
+})();

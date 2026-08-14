@@ -18,16 +18,59 @@ email: darkthecross@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   This is the personal website of Mingxiang Fan (AKA darkthecross).
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "darkthecross.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://darkthecross.com" # the base hostname & protocol for your site
 #twitter_username: jekyllrb
 github_username:  darkthecross
 linkedin_url: https://www.linkedin.com/in/%E6%98%8E%E7%A5%A5-%E6%A8%8A-44b091b4/
 author: Mingxiang Fan
+
+# Drop a real GA4 measurement ID (starts with "G-") here to enable analytics in production.
+# google_analytics: G-XXXXXXXXXX
+
 # Build settings
 markdown: kramdown
-theme:
-plugins: []
-#  - jekyll-feed
+
+# Default permalink for future posts that don't set their own override.
+# The 12 existing posts each keep an explicit per-post `permalink:` + `redirect_from:`
+# pair in their front matter so their old URLs keep working (see _posts/).
+permalink: /blog/:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jekyll-paginate-v2
+
+# Pagination for the /blog/ chronological archive (jekyll-paginate-v2).
+pagination:
+  enabled: true
+  per_page: 8
+  permalink: '/page/:num/'
+  title: ':title - page :num'
+  sort_field: 'date'
+  sort_reverse: true
+
+# Auto-generated, auto-paginated archive pages per tag/category (jekyll-paginate-v2).
+# Tags/categories are derived from post front matter — no separate data file to keep in sync.
+autopages:
+  enabled: true
+  # This site only has the built-in `posts` collection, so the collection
+  # autopages feature (which defaults to enabled) has nothing to generate.
+  collections:
+    enabled: false
+  categories:
+    enabled: true
+    layouts:
+      - category_archive.html
+    title: 'Category: :cat'
+    permalink: '/categories/:cat/'
+  tags:
+    enabled: true
+    layouts:
+      - tag_archive.html
+    title: 'Tag: :tag'
+    permalink: '/tags/:tag/'
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

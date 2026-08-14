@@ -1,0 +1,20 @@
+{%- if site.categories.size > 0 or site.tags.size > 0 -%}
+<div class="container taxonomy-filters pb-4">
+  {%- if site.categories.size > 0 -%}
+  <div class="filter-group">
+    <span class="filter-label">Categories</span>
+    {%- for cat in site.categories -%}
+    <a class="badge bg-secondary" href="/categories/{{ cat[0] | slugify }}/">{{ cat[0] }}</a>
+    {%- endfor -%}
+  </div>
+  {%- endif -%}
+  {%- if site.tags.size > 0 -%}
+  <div class="filter-group">
+    <span class="filter-label">Tags</span>
+    {%- for tag in site.tags -%}
+    <a class="tag-chip" href="/tags/{{ tag[0] | slugify }}/">#{{ tag[0] }}</a>
+    {%- endfor -%}
+  </div>
+  {%- endif -%}
+</div>
+{%- endif -%}

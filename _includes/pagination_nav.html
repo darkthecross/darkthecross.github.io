@@ -1,0 +1,15 @@
+{%- if paginator.total_pages > 1 -%}
+<nav class="pagination-nav container d-flex justify-content-between align-items-center pb-5" aria-label="Pagination">
+  {%- if paginator.previous_page -%}
+  <a class="pagination-link" href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a>
+  {%- else -%}
+  <span></span>
+  {%- endif -%}
+  <span class="pagination-status text-muted">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {%- if paginator.next_page -%}
+  <a class="pagination-link" href="{{ paginator.next_page_path | relative_url }}">Older &rarr;</a>
+  {%- else -%}
+  <span></span>
+  {%- endif -%}
+</nav>
+{%- endif -%}

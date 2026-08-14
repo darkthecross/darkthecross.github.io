@@ -1,6 +1,12 @@
 ---
 layout: default
 title: 404
+# GitHub Pages requires a literal /404.html file at the site root to serve
+# as the custom error page -- pin this explicitly since the site-wide
+# `permalink:` pattern (used for posts) would otherwise give plain pages
+# trailing-slash directory URLs too (/404/index.html), which GH Pages won't
+# pick up.
+permalink: /404.html
 ---
 
 <style type="text/css" media="screen">

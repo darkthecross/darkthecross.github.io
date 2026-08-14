@@ -1,0 +1,14 @@
+{%- assign card_post = include.post -%}
+{%- assign title_img_file = site.static_files | where: "name", card_post.title-image | first -%}
+<a href="{{ card_post.url }}" class="project-card-link">
+  <div class="project-card{% if card_post.featured %} project-card-featured{% endif %}"{% if title_img_file %} style="background-image: url({{ title_img_file.path }});"{% endif %}>
+    <div class="post-body">
+      <h5 class="card-title">{{ card_post.title }}</h5>
+      <p class="post-meta">
+        <time>{{ card_post.date | date: "%b %-d, %Y" }}</time>
+        {%- if card_post.category %} &middot; <span class="badge bg-secondary">{{ card_post.category }}</span>{% endif -%}
+      </p>
+      <p class="post-description">{{ card_post.description }}</p>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<section class="hero container pt-5 pb-4 text-center">
+  <h1 class="hero-title">{{ site.title }}</h1>
+  <p class="hero-tagline">&mdash; <a href="/about/" class="text-muted">{{ site.author }}</a>'s notes on robotics, machine learning, and building things.</p>
+  <a class="btn btn-outline-light hero-cta" href="/blog/">Read the blog &rarr;</a>
+</section>
+
+{%- assign featured_posts = site.posts | where: "featured", true -%}
+{%- if featured_posts.size > 0 -%}
+<section class="container featured-section pb-4">
+  <h6 class="section-label">Featured</h6>
+  <div class="index-projects-div featured-grid">
+    {%- for post in featured_posts -%}
+    {%- include post_card.html post=post -%}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}
+
+<section class="container recent-section pb-5">
+  <h6 class="section-label">Recent posts</h6>
+  <ul class="recent-posts-list">
+    {%- for post in site.posts limit: 6 -%}
+    <li class="recent-post-item">
+      <a href="{{ post.url }}">
+        <span class="recent-post-title">{{ post.title }}</span>
+        <span class="recent-post-meta text-muted">{{ post.date | date: "%b %-d, %Y" }}{% if post.category %} &middot; {{ post.category }}{% endif %}</span>
+      </a>
+    </li>
+    {%- endfor -%}
+  </ul>
+  <a class="see-all-link" href="/blog/">See all posts &rarr;</a>
+</section>

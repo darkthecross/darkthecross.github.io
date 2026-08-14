@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<div class="container pt-3 pb-3">
+  <h1 class="text-center">Blog</h1>
+  <p class="text-center text-muted">{{ paginator.total_posts }} post{% if paginator.total_posts != 1 %}s{% endif %} on robotics, machine learning, and whatever else is worth writing down.</p>
+</div>
+
+{%- include taxonomy_filters.html -%}
+
+<div class="container index-container">
+  <div class="index-projects-div">
+    {%- for post in paginator.posts -%}
+    {%- include post_card.html post=post -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- include pagination_nav.html -%}
